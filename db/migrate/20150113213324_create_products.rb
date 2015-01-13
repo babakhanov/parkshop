@@ -1,12 +1,15 @@
 class CreateProducts < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :products do |t|
+      t.string :name
       t.string :title
-      t.decimal :price
-      t.text :small_text
       t.text :description
 
       t.timestamps null: false
     end
+  end
+
+  def self.down
+    drop_table :products
   end
 end
