@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150124105705) do
   add_index "filter_names", ["category_id"], name: "index_filter_names_on_category_id", using: :btree
 
   create_table "filter_values", force: :cascade do |t|
-    t.string   "value",          limit: 255
+    t.string   "title",          limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "filter_name_id", limit: 4
