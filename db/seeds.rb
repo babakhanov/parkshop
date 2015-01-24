@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+FilterName.delete_all
+
+FIlterName.create!(title: 'Programming Ruby 2.0',
+  description: %{Ruby is the fastest growing and most exciting dynamic language out there. If you need to get working programs delivered fast, you should add Ruby to your toolbox.},
+  image_url: 'ruby.jpg',
+  price: 49.95)
+

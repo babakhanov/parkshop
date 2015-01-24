@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114193914) do
+ActiveRecord::Schema.define(version: 20150124105705) do
 
-  create_table "filter_names", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
+  create_table "filter_names", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "category_id", limit: 4
+  end
+
+  add_index "filter_names", ["category_id"], name: "index_filter_names_on_category_id", using: :btree
+
   create_table "filter_values", force: :cascade do |t|
-    t.string   "value",          limit: 255
+    t.string   "title",          limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "filter_name_id", limit: 4
@@ -28,20 +39,33 @@ ActiveRecord::Schema.define(version: 20150114193914) do
 
   add_index "filter_values", ["filter_name_id"], name: "index_filter_values_on_filter_name_id", using: :btree
 
-  create_table "filter_values_products", id: false, force: :cascade do |t|
+  create_table "filter_values_sub_products", id: false, force: :cascade do |t|
     t.integer "filter_value_id", limit: 4
-    t.integer "product_id",      limit: 4
+    t.integer "sub_product_id",  limit: 4
   end
 
-  add_index "filter_values_products", ["filter_value_id", "product_id"], name: "filter_values_products_index", unique: true, using: :btree
+  add_index "filter_values_sub_products", ["filter_value_id", "sub_product_id"], name: "filter_values_sub_products_index", unique: true, using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "title",       limit: 255
-    t.decimal  "price",                     precision: 10
+    t.text     "small_text",  limit: 65535
     t.text     "description", limit: 65535
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "category_id", limit: 4
   end
+
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+
+  create_table "sub_products", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.decimal  "price",                  precision: 10
+    t.integer  "product_id", limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "sub_products", ["product_id"], name: "index_sub_products_on_product_id", using: :btree
 
 end

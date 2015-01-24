@@ -1,3 +1,5 @@
 class Product < ActiveRecord::Base
-  has_and_belongs_to_many :filter_values
+  has_many :sub_products
+  belongs_to :category
+  accepts_nested_attributes_for :sub_products, :allow_destroy => true
 end
