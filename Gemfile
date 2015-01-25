@@ -4,18 +4,20 @@ gem 'mysql2', '~> 0.3.17'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'turbolinks'
+gem 'jquery-rails', '~> 4.0.3'
+gem 'turbolinks', '~> 2.5.3'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_admin', '~> 0.6.6'
 gem 'i18n', '~> 0.7.0'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'byebug', '~> 3.5.1'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
-  gem 'habtm_generator'
+  gem 'spring', '~> 1.2.0'
+  gem 'habtm_generator', '~> 0.3'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'faker', '~> 1.4.3'
 end
 
 group :test do

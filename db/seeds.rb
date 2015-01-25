@@ -1,5 +1,7 @@
+require Rails.root.join('spec/factories.rb')
 
 Category.delete_all
 
-Category.create(name: 'Fiction', title: "Fiction", description: "Fiction")
-Category.create(name: 'novel', title: "Novel", description: "Novel")
+50.times do 
+  FactoryGirl.create :category
+end
