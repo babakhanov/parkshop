@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-xs-12
+      %h1= @category.name
+    .col-xs-4
+
+    .col-xs-8
+      - @category.products.each do |product|
+        %h2=product.name

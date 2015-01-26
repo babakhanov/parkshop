@@ -9,6 +9,7 @@ module Parkshop
 
     config.generators do |g|
       g.test_framework :rspec
+      g.template_engine :haml
     end
 
     config.active_record.raise_in_transactional_callbacks = true

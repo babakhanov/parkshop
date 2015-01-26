@@ -10,6 +10,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_admin', '~> 0.6.6'
 gem 'i18n', '~> 0.7.0'
+gem 'haml-rails', '~> 0.7.0'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.1'

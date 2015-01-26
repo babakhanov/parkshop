@@ -23,7 +23,7 @@ filter_names = []
 
 end
 
-3.times do
+50.times do
   category = Category.create( 
     name: Faker::Commerce.department(2, true), 
     title: Faker::Commerce.department(4, true), 
@@ -33,7 +33,7 @@ end
     item.category = category
     item.save
   end
-  5.times do
+  120.times do
     product = Product.create(
       name: Faker::Commerce.product_name,
       title: Faker::Commerce.department(4, true),
@@ -47,6 +47,7 @@ end
         name: Faker::Commerce.department(1, true),
         price: Faker::Commerce.price
       )
+      puts sub_product.name
       sub_product.product = product
       sub_product.save
     end
