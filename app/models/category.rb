@@ -1,11 +1,28 @@
 class Category < ActiveRecord::Base
   has_many :products, dependent: :destroy
   
-  def flt
-    # Rename this method
-    # Collect all products (ids) and compare request to find all unique filter_values or better filter_names order by product's subitems
-    products = Product.select(:id).where(:category_id => self.id).pluck(:id)
-    SubProduct.joins(:filter_values).where(:sub_product.id => products)
-  end
+  def filter_groups
+
+    filter_columns = {}
+
+    filters = FilterValue
+      .includes(:filter_name)
+      .joins(sub_products: :product)
+      .where('products.category_id' => self.id)
+      .uniq
+
+    filters.each do |filter|
+      key = filter.filter_name.id
+      key = key.to_s
+      if defined? filter_columns[key][:name]
+        filter_columns[key][:filter] << filter
+      else
+        filter_columns[key] = {:filter => [filter], :name => filter.filter_name.name}
+      end
+    end
+
+    filter_columns.to_a
+
+  end 
 
 end

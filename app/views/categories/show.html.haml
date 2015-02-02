@@ -4,22 +4,12 @@
       %h1= @category.name
     .col-xs-4
       .row
-        - @filters = FilterValue.joins(sub_products: :product).where('products.category_id' => @category.id).uniq 
-        - @filters.each do |filter|
-          .col-xs-12
-            #{filter.title}
-          
+        - @category.filter_groups.each do |group|
+          %h2=group[1][:name]
+          -group[1][:filter].each do |item|
+            %label
+              %input{type: "checkbox", name: "filters", value: item.id}
+              =item.title
+
+            
     .col-xs-8
-      - @category.products.each do |product|
-        %h1=product.name
-        %div
-          - items = product.sub_products
-          - items.each do |item|
-            %h4 #{item.name}
-            - filter = item.filter_values
-            - filter.each do |flt|
-              %div 
-                %b #{flt.filter_name.name}
-                =flt.title
-                %i
-                  %b #{flt.id}
