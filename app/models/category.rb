@@ -25,4 +25,19 @@ class Category < ActiveRecord::Base
 
   end 
 
+  def products(filters)
+    if filters.length > 0 
+      subs = SubProduct
+              .joins(:filter_values)
+              .where('filter_values.id' => filters)
+              .group('1,2')
+              .having("COUNT(filter_values.id) =#{filters.length}")
+              .uniq
+              .map(&:product_id)
+      Product.where(:id => subs, :category_id => self.id).uniq
+    else
+      Product.where('category_id' => self.id)
+    end
+  end
+
 end

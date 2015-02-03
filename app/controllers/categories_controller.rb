@@ -5,6 +5,11 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @filters = []
+
+    if defined? params[:filters]
+      @filters = params[:filters].to_a
+    end
   end
 
 end

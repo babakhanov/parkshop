@@ -9,26 +9,19 @@
             %h2=group[1][:name]
             -group[1][:filter].each do |item|
               %label
-                - if params[:filters][:filters].include? item.id.to_s
-                  %input{type: "checkbox", checked: "true", name: "filters[filters][]", value: item.id}
+                -if @filters.include? item.id.to_s
+                  %input{type: "checkbox", checked: "true", name: "filters[]", value: item.id}
                 -else
-                  %input{type: "checkbox",  name: "filters[filters][]", value: item.id}
-                =item.title
-                %i=item.id
+                  %input{type: "checkbox",  name: "filters[]", value: item.id}
+              =item.title
+              %i=item.id
           = f.submit
 
 
             
     .col-xs-8
-      - Product.joins(sub_products: :filter_values).where('filter_values.id' => params[:filters][:filters], 'category_id' => @category.id).each do |i|
-        .clearfix
-          .form-group
-          %h2
-            = i.name
-            %span=i.id
-          -i.sub_products.each do |s|
-            - s.filter_values.each do |f|
-              %b=f.title
-              %b=f.id
-              %i=f.filter_name.name
-              %br
+      -@category.products(@filters).each do |product|
+        %h1=product.name
+        -product.sub_products.each do |sub|
+          -sub.filter_values.each do |value|
+            =value.id
