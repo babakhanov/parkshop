@@ -7,13 +7,13 @@ FilterValue.delete_all
 filters = []
 filter_names = []
 filters_all = []
-8.times do |i|
+15.times do |i|
   filters[i] = []
   filter = FilterName.create(
     name: Faker::Commerce.department(1, true)
   )
   filter_names << filter
-  3.times do
+  14.times do
     filter_value = FilterValue.create(
       title: Faker::Commerce.department(1, true)
     )
@@ -31,7 +31,7 @@ end
     title: Faker::Commerce.department(4, true), 
     description: Faker::Commerce.department(6, true) 
   )
-  85.times do
+  1500.times do
     product = Product.create(
       name: Faker::Commerce.product_name,
       title: Faker::Commerce.department(4, true),

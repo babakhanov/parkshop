@@ -2,26 +2,9 @@
   .row
     .col-xs-12
       %h1= @category.name
-    .col-xs-4
-      .row
-        = form_for(@category, :method => :get) do |f|
-          - @category.filter_groups.each do |group|
-            %h2=group[1][:name]
-            -group[1][:filter].each do |item|
-              %label
-                -if @filters.include? item.id.to_s
-                  %input{type: "checkbox", checked: "true", name: "filters[]", value: item.id}
-                -else
-                  %input{type: "checkbox",  name: "filters[]", value: item.id}
-              =item.title
-              %i=item.id
-          = f.submit
-
-
-            
-    .col-xs-8
-      -@category.products(@filters).each do |product|
-        %h1=product.name
-        -product.sub_products.each do |sub|
-          -sub.filter_values.each do |value|
-            =value.id
+    .col-xs-3
+      = form_for(@category, :method => :get) do |f|
+        = render "categories/filters/block"
+        = f.submit
+    .col-xs-9
+      = render partial: "product", collection: @products
