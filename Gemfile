@@ -13,7 +13,9 @@ gem 'i18n', '~> 0.7.0'
 gem 'haml-rails', '~> 0.7.0'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'simple_form', '~> 3.1.0'
+gem 'kaminari', '~> 0.16.2'
 #gem 'pg'
+gem 'turboboost', '~> 0.0.11'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.1'

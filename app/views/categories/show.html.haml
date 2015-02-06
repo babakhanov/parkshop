@@ -3,8 +3,10 @@
     .col-xs-12
       %h1= @category.name
     .col-xs-3
-      = form_for(@category, :method => :get) do |f|
+      = form_for @category, :method => :get, :html => {:class => 'filters-form', "data-remote" => "", "data-turboboost" => "true"} do |f|
         = render "categories/filters/block"
         = f.submit
     .col-xs-9
       = render partial: "product", collection: @products
+      .clearfix
+        =paginate @products
