@@ -1,7 +1,0 @@
-.clearfix
-  %label
-    - if checkbox.updated_at
-      %input(type="checkbox" checked="true" name="filters[]" value="#{checkbox.id}")
-    -else
-      %input(type="checkbox" name="filters[]" value="#{checkbox.id}")
-    = checkbox.title

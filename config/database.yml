@@ -1,18 +1,18 @@
-default: &default
+login: &login
   adapter: mysql2
   pool: 5
-  timeout: 5000
   username: root
   password: 123
 
 development:
-  <<: *default
+  <<: *login
   database: parkshop_development
 
 test:
-  <<: *default
+  <<: *login
   database: parkshop_test
 
 production:
-  <<: *default
+  <<: *login
   database: parkshop_production
+

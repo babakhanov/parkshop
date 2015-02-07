@@ -12,13 +12,13 @@ class Category < ActiveRecord::Base
 
     filter_groups.each do |index, value|
       filter_name = FilterName.find(index).name
-
+      index = index.to_s
       value.each do |filter|
-        if !filter_params.include?(filter.id.to_s)
+        if !filter_params.present? || !filter_params[index].present? || !filter_params[index].include?(filter.id.to_s)
           filter.updated_at = nil
         end
       end
-      filters << {:name => filter_name, :items => value }
+      filters << {:name => filter_name, :group_id => index, :items => value }
     end
 
     filters
@@ -26,14 +26,13 @@ class Category < ActiveRecord::Base
 
   def items(filters)
     if filters.length > 0 
-      subs = SubProduct
-              .joins(:filter_values)
-              .where('filter_values.id' => filters)
-              .group('1,2')
-              .having("COUNT(filter_values.id) =#{filters.length}")
-              .uniq
-              .map(&:product_id)
-      Product.where(:id => subs, :category_id => self.id).uniq
+      sub_products = []
+      filters.each do |filter|
+        subs = SubProduct.joins(:filter_values).where('filter_values.id' => filter[1]).uniq.map(&:id)
+        sub_products << subs
+      end
+      sub_products = sub_products.inject(:&)
+      Product.joins(:sub_products).where('sub_products.id' => sub_products, :category_id => self.id).uniq
     else
       Product.where('category_id' => self.id)
     end
