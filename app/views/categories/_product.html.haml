@@ -1,2 +1,15 @@
-%h1=product.name
+%h1
+  =product.name
 %span=product.small_text
+.clearfix
+  -subs = product.sub_products
+  - subs.each do |sub|
+    %h4
+      =sub.name
+      *
+      =sub.id
+    -values = sub.filter_values
+    -values.each do |value|
+      %b=value.filter_name.name
+      %span=value.title
+      %br
