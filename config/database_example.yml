@@ -1,8 +1,8 @@
 login: &login
   adapter: postgresql
   pool: 5
-  username: alex
-  password: 123
+  username: ubuntu
+  password: 
 
 development:
   <<: *login
