@@ -2,4 +2,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require turboboost
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/slider
 //= require_tree ./main

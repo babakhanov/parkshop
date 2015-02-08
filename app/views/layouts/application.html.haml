@@ -19,8 +19,9 @@
               %ul.nav.navbar-nav
                 %li=link_to "Categories", :categories
 
-      .container
-        %h2
-          Page Rendered in #{sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0)} seconds
+      .container  
+        .clearfix
+          .col-xs-12
+            Page Rendered in #{sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0)} seconds
         = yield
 

@@ -1,15 +1,17 @@
-%h1
-  =product.name
-%span=product.small_text
-.clearfix
-  -subs = product.sub_products
-  - subs.each do |sub|
-    %h4
-      =sub.name
-      *
-      =sub.id
-    -values = sub.filter_values
-    -values.each do |value|
-      %b=value.filter_name.name
-      %span=value.title
-      %br
+-cat = @category.name.split(" ").each{|i| i.downcase!}.join("_")
+-prod = product.small_text.split(" ").each{|i| i.downcase!}.join("_")
+.col-xs-4.form-group
+  .form-group
+    %a{:href=>"http://inflavor.com.ua/#{cat}/#{prod}.html"}
+      %img{:src => "http://inflavor.com.ua/#{cat}/#{prod}_logo.jpg", :alt=>""}
+  %b
+    %a{:href=>"http://inflavor.com.ua/#{cat}/#{prod}.html"}=product.name
+//.clearfix
+//  -subs = product.sub_products
+//  - subs.each do |sub|
+//    -values = sub.filter_values
+//    %br
+//    -values.each do |value|
+//      %b=value.filter_name.name
+//      %span=value.title
+//      &nbsp;

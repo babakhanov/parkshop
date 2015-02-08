@@ -1,7 +1,8 @@
 login: &login
-  adapter: mysql2
+  #adapter: mysql2
+  adapter: postgresql
   pool: 5
-  username: root
+  username: alex
   password: 123
 
 development:

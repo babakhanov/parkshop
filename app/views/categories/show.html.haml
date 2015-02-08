@@ -4,9 +4,31 @@
       %h1= @category.name
     .col-xs-3
       = form_for @category, :method => :get, :html => {:class => 'filters-form', "data-remote" => "", "data-turboboost" => "true"} do |f|
+        - if @price_points[0] != @price_points[1]
+          .row.price-slider
+            .clearfix=@category.filters
+            .col-xs-12
+              %h2 Price:
+          .row
+            .col-xs-2
+              .form-group
+                from
+            .col-xs-4
+              .form-group
+                %input.form-control{:name=>"price_from", :value=>@category.price_range[0]}
+            .col-xs-2
+              .form-group
+                to
+            .col-xs-4
+              .form-group
+                %input.form-control{:name=>"price_from", :value=>@category.price_range[1]}
+          .row
+            .col-xs-12
+              .price-ui-slider
         = render "categories/filters/block"
         = f.submit
     .col-xs-9
-      = render partial: "product", collection: @products
+      .row
+        = render partial: "product", collection: @products
       .clearfix
         =paginate @products

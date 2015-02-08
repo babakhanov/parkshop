@@ -7,8 +7,12 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @filter_groups = @category.filter_groups(get_filters)
-    @products = @category.items(get_filters).page(params[:page]).per(12)
+    @category.filters = get_filters
+
+    @price_points = @category.price_range
+
+    @filter_groups = @category.filter_groups
+    @products = @category.items.page(params[:page]).per(12)
   end
 
 end
