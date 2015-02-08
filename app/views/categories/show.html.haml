@@ -6,7 +6,6 @@
       = form_for @category, :method => :get, :html => {:class => 'filters-form', "data-remote" => "", "data-turboboost" => "true"} do |f|
         - if @price_points[0] != @price_points[1]
           .row.price-slider
-            .clearfix=@category.filters
             .col-xs-12
               %h2 Price:
           .row
@@ -15,18 +14,21 @@
                 from
             .col-xs-4
               .form-group
-                %input.form-control{:name=>"price_from", :value=>@category.price_range[0]}
+                %input.form-control.price-from{:name=>"price_from", :value=> @price_points[2]}
+                %input.price-start{:type=>"hidden", :name => "price_start", :value => @price_points[0]}
             .col-xs-2
               .form-group
                 to
             .col-xs-4
               .form-group
-                %input.form-control{:name=>"price_from", :value=>@category.price_range[1]}
+                %input.form-control.price-to{:name=>"price_to", :value=> @price_points[3]}
+                %input.price-end{:type=>"hidden", :name => "price_end", :value => @price_points[1]}
           .row
             .col-xs-12
               .price-ui-slider
-        = render "categories/filters/block"
-        = f.submit
+        .form-group
+          = render "categories/filters/block"
+        = f.submit 'Filter', :class => 'btn btn-info col-xs-12' 
     .col-xs-9
       .row
         = render partial: "product", collection: @products
