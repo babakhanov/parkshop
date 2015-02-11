@@ -2,16 +2,7 @@
 -prod = product.small_text.split(" ").each{|i| i.downcase!}.join("_")
 .col-xs-4.form-group
   .form-group
-    %a{:href=>"http://inflavor.com.ua/#{cat}/#{prod}.html"}
+    = link_to product do
       %img{:src => "http://inflavor.com.ua/#{cat}/#{prod}_logo.jpg", :alt=>""}
-  %b
-    %a{:href=>"http://inflavor.com.ua/#{cat}/#{prod}.html"}=product.name
-//.clearfix
-//  -subs = product.sub_products
-//  - subs.each do |sub|
-//    -values = sub.filter_values
-//    %br
-//    -values.each do |value|
-//      %b=value.filter_name.name
-//      %span=value.title
-//      &nbsp;
+      
+  %b= link_to product.name, product

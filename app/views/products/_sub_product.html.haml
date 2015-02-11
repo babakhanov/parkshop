@@ -1,0 +1,4 @@
+.form-group
+  %h4 #{@product.name} #{sub_product.name}
+  = render :partial => "filter_line", :collection => sub_product.filter_values
+

@@ -1,0 +1,21 @@
+-cat = @category.name.split(" ").each{|i| i.downcase!}.join("_")
+.col-xs-12
+  .form-group
+    %ul.breadcrumb
+      %li=link_to "Main", :root 
+      %li=link_to @category.name, @category
+      %li.active=@product.name
+  .row
+    .col-xs-5
+      .row
+        %img.col-xs-12{:src=>"http://inflavor.com.ua/#{cat}/#{@product.small_text}_logo_big.jpg"}
+
+    .col-xs-6
+      %h1=@product.name
+      .form-group
+        .form-group=@product.small_text
+      .form-group
+        %b Description
+        .form-group=@product.description
+      .form-group
+        = render :partial => "sub_product", :collection => @sub_products
