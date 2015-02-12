@@ -9,10 +9,6 @@
     %title Parkshop
     = csrf_meta_tags
   %body
-    - if notice
-      %p.alert.alert-success= notice
-    - if alert
-      %p.alert.alert-danger= alert
     .wrapper(style="padding-top: 65px")
       %nav.navbar.navbar-default.navbar-fixed-top
         .container
@@ -24,8 +20,15 @@
                 %li=link_to "Categories", :categories
 
       .container  
-        .clearfix
-          .col-xs-12
-            Page Rendered in #{sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0)} seconds
+        - if notice
+          .alert.alert-success
+            %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+              %span{"aria-hidden" => "true"} &times;
+            = notice
+        - if alert
+          .alert.alert-danger
+            %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+              %span{"aria-hidden" => "true"} &times;
+            = alert
         = yield
 
