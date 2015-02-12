@@ -9,6 +9,10 @@
     %title Parkshop
     = csrf_meta_tags
   %body
+    - if notice
+      %p.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-danger= alert
     .wrapper(style="padding-top: 65px")
       %nav.navbar.navbar-default.navbar-fixed-top
         .container
