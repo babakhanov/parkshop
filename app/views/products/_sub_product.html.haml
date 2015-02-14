@@ -1,4 +1,8 @@
 .form-group
   %h4 #{@product.name} #{sub_product.name}
-  = render :partial => "filter_line", :collection => sub_product.filter_values
+  .row
+    .col-xs-8
+      = render :partial => "filter_line", :collection => sub_product.filter_values
+    .col-xs-4.text-right
+      = link_to "Hello", new_order_item_path(item: sub_product.id, product: @product.id), class: "btn btn-success", id: sub_product.id
 
