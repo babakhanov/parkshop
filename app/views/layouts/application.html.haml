@@ -10,15 +10,7 @@
     = csrf_meta_tags
   %body
     .wrapper(style="padding-top: 65px")
-      %nav.navbar.navbar-default.navbar-fixed-top
-        .container
-          .col-xs-12
-            .navbar-header
-              = link_to "Parkshop", "/", :class=>"navbar-brand"
-            .navbar-collapse.collapse
-              %ul.nav.navbar-nav
-                %li=link_to "Categories", :categories
-
+      = render "shared/header"
       .container  
         - if notice
           .alert.alert-success

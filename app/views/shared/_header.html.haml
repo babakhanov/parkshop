@@ -1,0 +1,10 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .col-xs-8
+      .navbar-header
+        = link_to "Parkshop", "/", :class=>"navbar-brand"
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li=link_to "Categories", :categories
+    .col-xs-4.text-right
+      = render "shared/auth_menu"

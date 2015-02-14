@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require turboboost
+//= require bootstrap/dropdown
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
