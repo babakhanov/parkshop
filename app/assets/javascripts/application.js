@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require turboboost
 //= require bootstrap/dropdown
+//= require bootstrap/modal
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/mouse

@@ -13,6 +13,8 @@
       = render "shared/header"
       .container  
         .col-xs-12
+          = cookies[:cart_info]
+        .col-xs-12
           Page Rendered in #{sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0)} seconds
         - if notice
           .alert.alert-success
@@ -26,3 +28,17 @@
             = alert
         = yield
 
+    .modal.fade.modal-cart
+      .modal-dialog
+        .modal-content
+          .modal-body
+            -get_cart_info.each do |item|
+              = link_to item.product do
+                =item.product.name
+                %b=number_to_currency(item.price)
+                (#{item.id})
+                x
+                =item.amount
+                %br
+
+              

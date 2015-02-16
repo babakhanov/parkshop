@@ -1,6 +1,9 @@
 %ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
-    = render "shared/nav_link", to: destroy_user_session_path, text: "Logout"
+    %li=link_to "Logout", destroy_user_session_path, :method => :delete 
   - else
     = render "shared/nav_link", to: new_user_session_path, text:"Sign In"
     = render "shared/nav_link", to: new_user_registration_path, text: "Sign Up"
+  %li
+    %a{:href=>"#", "data-toggle" => "modal", "data-target" => ".modal-cart"}
+      Cart (#{cart_summ ? cart_summ : 'empty' })

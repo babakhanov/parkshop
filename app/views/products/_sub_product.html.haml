@@ -1,8 +1,17 @@
 .form-group
   %h4 #{@product.name} #{sub_product.name}
   .row
-    .col-xs-8
+    .col-xs-12
       = render :partial => "filter_line", :collection => sub_product.filter_values
-    .col-xs-4.text-right
-      = link_to "Hello", new_order_item_path(item: sub_product.id, product: @product.id), class: "btn btn-success", id: sub_product.id
-
+    .col-xs-12
+      .form-group
+        -if sub_product.price > 0
+          = link_to new_order_item_path(item: sub_product.id, product: @product.id) do 
+            %button.btn.btn-success
+              = t "product.buy_for"
+              %b=number_to_currency(sub_product.price)
+        -else
+          %span
+            =t "product.sold_out"
+          %button.btn.btn-default
+            =t "product.pre_order"

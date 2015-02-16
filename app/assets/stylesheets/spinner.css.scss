@@ -1,0 +1,31 @@
+.loading {
+  .navbar-fixed-top {
+    &:after {
+      content: '';
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      background-size: 50px 50px;
+      background-image: -webkit-gradient(linear, 0 0, 100% 100%, 
+            color-stop(0.25, rgba(pink, 0.2)), 
+            color-stop(0.25, transparent), color-stop(0.5, transparent), 
+            color-stop(0.5, rgba(pink, 0.2)), 
+            color-stop(0.75, rgba(pink, 0.2)), 
+            color-stop(0.75, transparent), to(transparent)
+         );
+      animation: move 1s linear infinite;
+    }
+  }
+}
+
+@keyframes move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
