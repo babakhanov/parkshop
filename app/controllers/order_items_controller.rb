@@ -1,7 +1,4 @@
 class OrderItemsController < ApplicationController
-
-  include ApplicationHelper
-
   def new
     if params[:product].present? && params[:item].present?
 

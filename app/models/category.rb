@@ -12,10 +12,11 @@ class Category < ActiveRecord::Base
       my_filter = FilterName.find(index)
       group_name = my_filter.name
       index = index.to_s
-
+      
       value.each do |filter|
+        filter.checked = true
         if !@filters.present? || !@filters[index].present? || !@filters[index].include?(filter.id.to_s)
-          filter.updated_at = nil
+          filter.checked = false
         end
       end
 

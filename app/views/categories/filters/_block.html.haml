@@ -3,7 +3,7 @@
   - filter[:items].each do |checkbox|
     .clearfix
       %label
-        - if checkbox.updated_at
+        - if checkbox.checked
           %input(type="checkbox" checked="true" name="filters[#{filter[:group_id]}][]" value="#{checkbox.id}")
         -else
           %input(type="checkbox" name="filters[#{filter[:group_id]}][]" value="#{checkbox.id}")

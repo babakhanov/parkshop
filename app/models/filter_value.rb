@@ -1,6 +1,7 @@
 class FilterValue < ActiveRecord::Base
   has_and_belongs_to_many :sub_products
   belongs_to :filter_name
+  attr_accessor :checked
 
   def self.get_groups(category_id)
     FilterValue.joins(sub_products: :product)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214125159) do
+ActiveRecord::Schema.define(version: 20150218201654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,19 @@ ActiveRecord::Schema.define(version: 20150214125159) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "payment_methods", force: :cascade do |t|
+    t.text     "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods_shipping_methods", id: false, force: :cascade do |t|
+    t.integer "payment_method_id"
+    t.integer "shipping_method_id"
+  end
+
+  add_index "payment_methods_shipping_methods", ["payment_method_id", "shipping_method_id"], name: "payment_methods_shipping_methods_index", unique: true, using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
@@ -81,6 +94,12 @@ ActiveRecord::Schema.define(version: 20150214125159) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+
+  create_table "shipping_methods", force: :cascade do |t|
+    t.text     "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sub_products", force: :cascade do |t|
     t.string   "name"

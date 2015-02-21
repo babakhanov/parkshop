@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   resource :order_item
+  resource :order
 
 end

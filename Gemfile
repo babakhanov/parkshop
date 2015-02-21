@@ -19,6 +19,7 @@ gem 'turboboost', '~> 0.0.11'
 gem 'jquery-ui-rails', '~> 5.0.3'
 gem 'devise', '~> 3.4.1'
 gem 'devise-bootstrap-views', '~> 0.0.4'
+gem 'carrierwave', '~> 0.10.0'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.1'

@@ -1,5 +1,10 @@
 en:
   hello: "Hello world"
+  store:
+    cart: "Cart"
+    clear_cart: "Clear Cart"
+    make_order: "Create Order"
+    total: "Total"
   product: 
     buy_for: "Buy For"
     sold_out: "Sold Out"
