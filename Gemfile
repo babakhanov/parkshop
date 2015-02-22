@@ -20,7 +20,7 @@ gem 'jquery-ui-rails', '~> 5.0.3'
 gem 'devise', '~> 3.4.1'
 gem 'devise-bootstrap-views', '~> 0.0.4'
 gem 'carrierwave', '~> 0.10.0'
-gem 'rmagick', '~> 2.13.4'
+gem 'mini_magick', '~> 4.1.0'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.1'
