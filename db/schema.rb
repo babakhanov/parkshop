@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222115914) do
+ActiveRecord::Schema.define(version: 20150222131048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20150222115914) do
 
   add_index "payment_methods_shipping_methods", ["payment_method_id", "shipping_method_id"], name: "payment_methods_shipping_methods_index", unique: true, using: :btree
 
+  create_table "product_pics", force: :cascade do |t|
+    t.string   "image"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "product_id"
+  end
+
+  add_index "product_pics", ["product_id"], name: "index_product_pics_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
@@ -117,10 +128,7 @@ ActiveRecord::Schema.define(version: 20150222115914) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "product_id"
   end
-
-  add_index "uploaded_files", ["product_id"], name: "index_uploaded_files_on_product_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -140,4 +148,5 @@ ActiveRecord::Schema.define(version: 20150222115914) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "product_pics", "products"
 end
