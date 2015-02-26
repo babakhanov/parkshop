@@ -38,8 +38,16 @@ module ApplicationHelper
     items
   end
 
-  def cart_summ
+  def cart_items_quant
     get_cart_items.values.inject(:+)
+  end
+  
+  def cart_summ
+    summ = 0
+    get_cart_info.each do |item|
+      summ = item.price * item.amount + summ
+    end
+    summ
   end
 
 end

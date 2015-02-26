@@ -9,3 +9,6 @@ en:
     buy_for: "Buy For"
     sold_out: "Sold Out"
     pre_order: "Create Pre Order"
+  order:
+    new_order_title: "New Order"
+    success_msg: "Thank you for your order. We'll contact you soon."

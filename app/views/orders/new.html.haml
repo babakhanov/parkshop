@@ -1,3 +1,27 @@
-%h1 new order
-- @order_items.each do |item|
-  =item.name
+.col-xs-12
+  %h1=t("order.new_order_title")
+  .form-group
+    %table.table
+      %thead(style="font-weight: bold;")
+        %tr
+          %td Product Name
+          %td Product Code
+          %td Quantity
+          %td Price
+          %td Total
+      - @order_items.each do |item|
+        %tr
+          %td=item.product.name
+          %td=item.name
+          %td=item.amount
+          %td=number_to_currency item.price
+          %td(style="font-weight: bold;")=number_to_currency item.price * item.amount
+      %tr(style="font-weight: bold;")
+        %td
+        %td
+        %td=cart_items_quant
+        %td
+        %td=number_to_currency cart_summ
+  .form-group.text-center
+    = link_to edit_order_path do 
+      %button.btn-success.btn.btn-lg Proceed
