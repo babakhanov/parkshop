@@ -23,5 +23,5 @@
         %td
         %td=number_to_currency cart_summ
   .form-group.text-center
-    = link_to edit_order_path do 
+    = link_to [:edit, @current_order] do 
       %button.btn-success.btn.btn-lg Proceed

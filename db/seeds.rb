@@ -21,7 +21,8 @@ json.each do |product|
   categories[key].products << prod
   categories[key].save
   product["subs"].each do |sub|
-    item = SubProduct.create :name => sub["sku"], :price => sub["price"]
+    puts sub["sku"]
+    item = SubProduct.create :name => sub["sku"], :price => sub["price"].to_f
     prod.sub_products << item
     sub.each do |i, val|
       if i != "sku" && i != "price"

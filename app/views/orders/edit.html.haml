@@ -1,2 +1,24 @@
 .col-xs-12
-  =@msg
+  = form_for edit_order_path, method: :get do
+    %h1=t("order.shipping_method")
+    -@shipping_methods.each do |item|
+      %label.form-group.col-xs-12
+        .row
+          - if params["shipping_method"] == item.id.to_s
+            %input{type: :radio, name: :shipping_method, value: item.id, checked: :true}
+          - else
+            %input{type: :radio, name: :shipping_method, value: item.id}
+          %span= item.title
+          %i (#{item.description})
+    %h1=t("order.payment_method")
+    -@payment_methods.each do |item|
+      %label.form-group.col-xs-12
+        .row
+          - if params["payment_method"] == item.id.to_s
+            %input{type: :radio, name: :payment_method, value: item.id, checked: :true}
+          - else
+            %input{type: :radio, name: :payment_method, value: item.id}
+          %span= item.title
+          %i (#{item.description})
+    %button.btn.btn-success{type: :submit} Submit
+
