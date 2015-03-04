@@ -7,13 +7,13 @@ login: &login
 
 development:
   <<: *login
-  database: parkshop_development_fauna
+  database: parkshop_development
 
 test:
   <<: *login
-  database: parkshop_test_fauna
+  database: parkshop_test
 
 production:
   <<: *login
-  database: parkshop_production_faune
+  database: parkshop_production
 

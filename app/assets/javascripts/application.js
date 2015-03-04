@@ -8,4 +8,5 @@
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
 //= require jquery-ui/slider
+//= require validator
 //= require_tree ./main

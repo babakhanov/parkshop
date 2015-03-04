@@ -8,3 +8,4 @@ database.yml
 database.yml.mysql
 database.yml.pg
 catalog.json
+/public/uploads

@@ -1,0 +1,6 @@
+.clearfix
+  %label
+    %input{type: :radio, name: "order[#{as}]", value: order_method.id, required: :true}
+    =order_method.title
+    %span(style="font-weight: normal;")
+      (#{order_method.description})

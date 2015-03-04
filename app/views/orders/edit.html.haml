@@ -1,24 +1,42 @@
 .col-xs-12
-  = form_for edit_order_path, method: :get do
-    %h1=t("order.shipping_method")
-    -@shipping_methods.each do |item|
-      %label.form-group.col-xs-12
-        .row
-          - if params["shipping_method"] == item.id.to_s
-            %input{type: :radio, name: :shipping_method, value: item.id, checked: :true}
-          - else
-            %input{type: :radio, name: :shipping_method, value: item.id}
-          %span= item.title
-          %i (#{item.description})
-    %h1=t("order.payment_method")
-    -@payment_methods.each do |item|
-      %label.form-group.col-xs-12
-        .row
-          - if params["payment_method"] == item.id.to_s
-            %input{type: :radio, name: :payment_method, value: item.id, checked: :true}
-          - else
-            %input{type: :radio, name: :payment_method, value: item.id}
-          %span= item.title
-          %i (#{item.description})
+  %h1 Confirm order
+  = form_for @order do
+    .row
+      .col-xs-6
+        .form-group
+          %label * Shipping Method
+          = render partial: "order_method", collection: @shipping_methods, as: :order_method, locals: { as: :shipping_method }
+          %span.help-block.with-errors
+      .col-xs-6
+        .form-group
+          %label * Payment Method
+          = render partial: "order_method", collection: @payment_methods, as: :order_method, locals: { as: :payment_method }
+          %span.help-block.with-errors
+    .row
+      .col-xs-6
+        .form-group
+          %label * First name
+          %input.form-control{type: :text, name: "order[first_name]", required: :true}
+          %span.help-block.with-errors
+      .col-xs-6
+        .form-group
+          %label * Last name
+          %input.form-control{type: :text, name: "order[last_name]", required: :true}
+          %span.help-block.with-errors
+    .row
+      .col-xs-6
+        .form-group
+          %label * Your phone
+          %input.form-control{required: :true, name: "order[phone]", type: :phone}
+          %span.help-block.with-errors
+      .col-xs-6
+        .form-group
+          %label * Your address
+          %input.form-control{required: :true, name: "order[address]", type: :text}
+          %span.help-block.with-errors
+    .clearfix
+      .form-group
+        %label Comment for order
+        %textarea.form-control{name: "order[comment]"}
     %button.btn.btn-success{type: :submit} Submit
 

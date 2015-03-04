@@ -1,8 +1,7 @@
--cat = @category.name.split(" ").each{|i| i.downcase!}.join("_")
--prod = product.small_text.split(" ").each{|i| i.downcase!}.join("_")
 .col-xs-4.form-group
   .form-group
     = link_to product do
-      %img{:src => "http://inflavor.com.ua/#{cat}/#{prod}_logo.jpg", :alt=>""}
+      .row
+        =image_tag product.product_pics.first.image, :class => "col-xs-12"
       
   %b= link_to product.name, product

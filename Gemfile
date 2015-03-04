@@ -21,6 +21,8 @@ gem 'devise', '~> 3.4.1'
 gem 'devise-bootstrap-views', '~> 0.0.4'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.1.0'
+gem 'activesupport', '~> 4.2.0'
+gem 'draper', '~> 1.4.0'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.1'

@@ -8,8 +8,7 @@
   .row
     .col-xs-5
       .row
-        %img.col-xs-12{:src=>"http://inflavor.com.ua/#{cat}/#{@product.small_text}_logo_big.jpg"}
-
+        = image_tag @product.product_pics.first.image.large, :class => "col-xs-12"
     .col-xs-6
       %h1=@product.name
       .form-group
