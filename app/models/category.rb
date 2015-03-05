@@ -1,8 +1,6 @@
 class Category < ActiveRecord::Base
   has_many :products, dependent: :destroy
-
   attr_accessor :filters, :price_from, :price_to
-
   def filter_groups
     groups = []
     filter_groups = FilterValue.get_groups(self.id)
@@ -22,14 +20,11 @@ class Category < ActiveRecord::Base
 
       groups << {:name => group_name, :group_id => index, :items => value }
     end
-
     groups
   end
 
-
   def items
     @price_from > 0 && @price_to > 0 ? by_price = true : by_price = false
-
     if @filters.length > 0 
       sub_products = []
       @filters.each do |filter|
@@ -41,10 +36,8 @@ class Category < ActiveRecord::Base
         sub_products << subs
       end
       sub_products = sub_products.inject(:&)
-
       Product.joins(:sub_products).where('sub_products.id' => sub_products, :category_id => self.id).uniq
     else
-
       if by_price
         Product.joins(:sub_products).where('category_id' => self.id, 'sub_products.price' => (@price_from..@price_to))
       else

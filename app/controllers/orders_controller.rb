@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
   def update
     order_data = params["order"]
     order = Order.find params[:id]
-
     order.first_name = order_data["first_name"]
     order.last_name = order_data["last_name"] 
     order.phone = order_data["phone"] 
@@ -38,7 +37,7 @@ class OrdersController < ApplicationController
     order.shipping_method = ShippingMethod.find order_data["shipping_method"]
     order.payment_method = PaymentMethod.find order_data["payment_method"]
     if order.save
-      cookies[:cart_info].clear
+      cookies.delete :cart_info
       render action: :success
     end
 
