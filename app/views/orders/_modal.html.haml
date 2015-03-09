@@ -1,0 +1,27 @@
+.modal.fade.modal-cart
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true")
+            &times;
+        %h4.modal-title=t("store.cart")
+      .modal-body
+        -get_cart_info.each do |item|
+          .clearfix
+            = link_to item.product do
+              = image_tag item.product.product_pics.first.image.micro
+            = link_to item.product do
+              =item.product.name
+              %b=number_to_currency(item.price)
+              (#{item.id})
+              &times;
+              =item.amount
+        .clearfix.text-right
+          %h4 
+            =t("store.total")
+            %b $40
+      .modal-footer
+        %button.btn.btn-default=t("store.clear_cart")
+        = link_to new_order_path do
+          %button.btn.btn-primary=t("store.make_order")
